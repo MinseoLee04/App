@@ -18,9 +18,9 @@ export default function DiaryScreen() {
     };
   
     const videoData = [
-      { date: '2024.08.22', thumbnail: require('./assets/exPhoto1.jpg') },
+      { date: '2024.08.20', thumbnail: require('./assets/exPhoto1.jpg') },
       { date: '2024.08.21', thumbnail: require('./assets/exPhoto2.jpg') },
-      { date: '2024.08.20', thumbnail: require('./assets/exPhoto3.jpg') },
+      { date: '2024.08.22', thumbnail: require('./assets/exPhoto3.jpg') },
     ];
   
     return (
@@ -92,7 +92,7 @@ export default function DiaryScreen() {
       height: 60,
     },
     tipText: {
-      fontSize: 18,
+      fontSize: 20,
       fontFamily: 'GowunBatang',
       color: '#444',
       flexWrap: 'wrap',
@@ -100,7 +100,7 @@ export default function DiaryScreen() {
     },
     scrollView: {
       alignItems: 'center',
-      paddingBottom: 50,
+      paddingBottom: 150, // Footer 영역만큼 패딩 추가
     },
     videoContainer: {
       width: Dimensions.get('window').width * 0.9,
@@ -138,19 +138,19 @@ export default function DiaryScreen() {
       justifyContent: 'space-around',
       width: '100%',
       paddingVertical: 15,
-      backgroundColor: '#F8F8F8', // Footer의 배경색
+      backgroundColor: '#F8F8F8',
       borderTopWidth: 1,
-      borderTopColor: '#E0E0E0', // Footer의 위쪽에 테두리 추가
+      borderTopColor: '#E0E0E0',
     },
     footerButton: {
       alignItems: 'center',
     },
     footerIcon: {
-      width: 100, // 아이콘 크기 조정
-      height: 100, // 아이콘 크기 조정
+      width: 100,
+      height: 100,
     },
     footerText: {
-      fontSize: 24, // 텍스트 크기 조정
+      fontSize: 16,
       color: '#000',
       fontFamily: 'GowunBatangBold',
     },
