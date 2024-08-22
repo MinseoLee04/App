@@ -18,9 +18,9 @@ export default function DiaryScreen() {
     };
   
     const videoData = [
-      { date: '2024.08.20', thumbnail: require('./assets/exPhoto1.jpg') },
+      { date: '2024.08.22', thumbnail: require('./assets/exPhoto1.jpg') },
       { date: '2024.08.21', thumbnail: require('./assets/exPhoto2.jpg') },
-      { date: '2024.08.22', thumbnail: require('./assets/exPhoto3.jpg') },
+      { date: '2024.08.20', thumbnail: require('./assets/exPhoto3.jpg') },
     ];
   
     return (
