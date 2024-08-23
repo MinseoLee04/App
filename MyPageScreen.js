@@ -1,17 +1,16 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image, ImageBackground } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import { useFonts } from 'expo-font';  // expo-font 패키지 사용
+import { useFonts } from 'expo-font';
 
 export default function ProfileScreen() {
-  // GowunBatang 폰트를 로드합니다.
   const [fontsLoaded] = useFonts({
     GowunBatangBold: require('./assets/fonts/GowunBatangBold.ttf'), 
-    GowunBatang: require('./assets/fonts/GowunBatang.ttf')  // 폰트 경로 지정
+    GowunBatang: require('./assets/fonts/GowunBatang.ttf')
   });
 
   if (!fontsLoaded) {
-    return null; // 폰트가 로드되지 않았다면 UI를 렌더링하지 않습니다.
+    return null;
   }
 
   return (
@@ -20,6 +19,12 @@ export default function ProfileScreen() {
       style={styles.background}
     >
       <StatusBar style="auto" />
+
+      {/* 상단 타이틀 영역 */}
+      <View style={styles.titleContainer}>
+        <Text style={styles.titleText}>인생필름</Text>
+      </View>
+
       <View style={styles.container}>
         {/* 상단 프로필 영역 */}
         <View style={styles.profileContainer}>
@@ -27,38 +32,64 @@ export default function ProfileScreen() {
             source={require('./assets/profile.png')} 
             style={styles.profileIcon} 
           />
-          <Text style={styles.greetingText}>홍길동님, 반갑습니다!</Text>
+          <Text style={styles.nameText}>이서연</Text>
         </View>
 
-        {/* 수정하기 버튼 */}
-        <TouchableOpacity style={styles.editButton}>
-          <Image source={require('./assets/pencil.png')} style={styles.editIcon} />
-          <Text style={styles.editText}>수정하기</Text>
-        </TouchableOpacity>
+        {/* 아래 선 */}
+        <View style={styles.line} />
 
-        {/* 일기 통계 영역 */}
-        <View style={styles.statsContainer}>
-          <Text style={styles.statsText}>일기 작성 수: 10</Text>
-          <Text style={styles.statsText}>최근 작성일: 2024-08-19</Text>
-          <Text style={styles.statsText}>일기 작성 빈도: 주 3회</Text>
+        {/* 내 정보 영역 */}
+        <View style={styles.infoContainer}>
+          <View style={styles.infoHeader}>
+            <Text style={styles.infoTitle}>내 정보</Text>
+            <TouchableOpacity style={styles.editButton}>
+              <Text style={styles.editText}>수정하기</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.infoRow}>
+            <Text style={styles.infoLabel}>성별</Text>
+            <Text style={styles.infoText}>여성</Text>
+          </View>
+          <View style={styles.infoRow}>
+            <Text style={styles.infoLabel}>생년월일</Text>
+            <Text style={styles.infoText}>2003.10.12</Text>
+          </View>
+          <View style={styles.infoRow}>
+            <Text style={styles.infoLabel}>내 전화번호</Text>
+            <Text style={styles.infoText}>+82 10-6687-9737</Text>
+          </View>
         </View>
 
-        {/* 목표 및 연락처 영역 */}
-        <View style={styles.goalContactContainer}>
-          <Text style={styles.sectionTitle}>나의 목표</Text>
-          <Text style={styles.goalText}>1. 매일 일기 작성하기</Text>
-          <Text style={styles.goalText}>2. 긍정적인 생각하기</Text>
-          <Text style={styles.sectionTitle}>연락처</Text>
-          <Text style={styles.contactText}>전화번호: 010-1234-5678</Text>
-          <Text style={styles.contactText}>비상연락망: 010-9876-5432</Text>
-          <Text style={styles.contactText}>이메일: honggildong@naver.com</Text>
+        {/* 내 정보와 비상 연락망 사이의 선 */}
+        <View style={styles.line} />
+
+        {/* 비상 연락망 영역 */}
+        <View style={styles.contactContainer}>
+          <View style={styles.infoHeader}>
+            <Text style={styles.infoTitle}>비상 연락망</Text>
+            <TouchableOpacity style={styles.editButton}>
+              <Text style={styles.editText}>수정하기</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.infoRow}>
+            <Text style={styles.contactLabel}>김옥지 | 딸</Text>
+            <Text style={styles.contactText}>+82 10 - 0000 - 0000</Text>
+          </View>
+          <View style={styles.infoRow}>
+            <Text style={styles.contactLabel}>김옥지 | 딸</Text>
+            <Text style={styles.contactText}>+82 10 - 0000 - 0000</Text>
+          </View>
+          <View style={styles.infoRow}>
+            <Text style={styles.contactLabel}>김옥지 | 딸</Text>
+            <Text style={styles.contactText}>+82 10 - 0000 - 0000</Text>
+          </View>
         </View>
 
         {/* Footer 부분 */}
         <View style={styles.footer}>
           <TouchableOpacity style={styles.footerButton}>
             <Image source={require('./assets/calendar.png')} style={styles.footerIcon} />
-            <Text style={styles.footerText}>일기</Text>
+            <Text style={styles.footerText}>예전 일기</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.footerButton}>
             <Image source={require('./assets/home.png')} style={styles.footerIcon} />
@@ -78,97 +109,115 @@ const styles = StyleSheet.create({
   background: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   container: {
     flex: 1,
-    justifyContent: 'flex-start',  // 컨테이너의 자식 요소들을 위쪽에 정렬
-    alignItems: 'center',  // 수평 방향으로 중앙에 정렬
-    paddingTop: 60,  // 상단에 여백을 추가
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    paddingTop: 20,
   },
 
-  // 프로필 컨테이너 스타일
+  // 상단 타이틀 스타일
+  titleContainer: {
+    width: '100%',
+    paddingVertical: 15,
+    backgroundColor: '#FFFFFF', // 흰색 배경
+    alignItems: 'flex-start', // 글씨를 왼쪽에 배치
+    paddingTop: 50,
+    paddingLeft: 20, // 왼쪽 여백 추가
+    marginBottom: 10, // 상단 바 아래 공간 추가
+  },
+  titleText: {
+    fontSize: 24,
+    color: '#000',
+    fontFamily: 'GowunBatangBold',
+  },
+
   profileContainer: {
-    flexDirection: 'row',  // 아이콘과 텍스트를 가로로 배치
-    alignItems: 'center',  // 세로 방향으로 중앙 정렬
-    justifyContent: 'flex-start',  // 가로 방향으로 왼쪽 정렬
-    paddingLeft: 20,  // 왼쪽에 약간의 여백을 둡니다.
-    paddingRight: 20,  // 오른쪽에 약간의 여백을 둡니다.
-    marginTop: 40,  // 상단에서 약간의 여백을 줍니다.
-    width: '100%',  // 컨테이너가 전체 너비를 차지하도록 설정
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 10,
   },
 
   profileIcon: {
-    width: 50,
-    height: 50,
-    marginRight: 10,
+    width: 80,
+    height: 80,
+    marginBottom: 10,
   },
-  greetingText: {
-    fontSize: 24,
-    color: '#000',
-    fontFamily: 'GowunBatangBold',  // 폰트를 GowunBatangBold로 변경
-  },
-
-  // 수정하기 버튼 스타일
-  editButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: 10, // 수정하기 버튼과 이전 요소 간의 여백
-    padding: 10,
-    backgroundColor: '#EAEAEA', // 배경색
-    borderRadius: 10,
-    shadowColor: '#000',    // 그림자의 색상
-    shadowOffset: { width: 0, height: 2 }, // 그림자의 오프셋 (x, y)
-    shadowOpacity: 0.25,    // 그림자의 불투명도 (0부터 1까지)
-    shadowRadius: 3.84,     // 그림자의 반경
-  },
-  editIcon: {
-    width: 24,
-    height: 24,
-    marginRight: 10, // 아이콘과 텍스트 간격
-  },
-  editText: {
-    fontSize: 20,
-    color: '#000',
-    fontFamily: 'GowunBatangBold',  // 폰트를 GowunBatangBold로 변경
-  },
-
-  statsContainer: {
-    marginTop: 30, // 통계 영역과 프로필 영역 사이에 여백 추가
-    paddingHorizontal: 20, // 통계 영역의 좌우 여백
-    width: '100%', // 통계 영역의 너비를 전체로 설정
-  },
-  statsText: {
-    fontSize: 20,
-    color: '#000',
-    fontFamily: 'GowunBatangBold',  // 폰트를 GowunBatangBold로 변경
-    marginBottom: 0, // 각 통계 항목 간의 간격
-  },
-  goalContactContainer: {
-    marginTop: 30, // 목표 및 연락처 영역과 통계 영역 사이에 여백 추가
-    paddingHorizontal: 20, // 좌우 여백
-    width: '100%', // 너비를 전체로 설정
-  },
-  sectionTitle: {
+  nameText: {
     fontSize: 22,
     color: '#000',
-    fontFamily: 'GowunBatangBold',  // 폰트를 GowunBatangBold로 변경
-    marginBottom: 10, // 제목과 내용 간의 간격
-    marginTop: 20, // 섹션 제목 위쪽 여백
+    fontFamily: 'GowunBatangBold',
   },
-  goalText: {
+
+  line: {
+    width: '90%',
+    height: 1,
+    backgroundColor: '#000',
+    marginVertical: 20,
+  },
+
+  infoContainer: {
+    width: '90%',
+  },
+  infoHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+  infoTitle: {
+    fontSize: 20,
+    color: '#000',
+    fontFamily: 'GowunBatangBold',
+  },
+  infoRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between', // 양 끝으로 정렬
+    alignItems: 'center',
+    marginBottom: 10,
+    width: '100%',
+  },
+  infoLabel: {
     fontSize: 18,
     color: '#000',
-    fontFamily: 'GowunBatang',  // 일반 글꼴은 GowunBatang으로 설정
-    marginBottom: 5, // 각 목표 항목 간의 간격
+    fontFamily: 'GowunBatangBold',
+    textAlign: 'left',
+  },
+  infoText: {
+    fontSize: 18,
+    color: '#777',
+    fontFamily: 'GowunBatang',
+    textAlign: 'right',
+  },
+  editButton: {
+    paddingVertical: 5,
+    paddingHorizontal: 15,
+    backgroundColor: '#EAEAEA',
+    borderRadius: 5,
+  },
+  editText: {
+    fontSize: 16,
+    color: '#777',
+    fontFamily: 'GowunBatangBold',
+  },
+
+  contactContainer: {
+    width: '90%',
+  },
+  contactLabel: {
+    fontSize: 18,
+    color: '#000',
+    fontFamily: 'GowunBatangBold',
+    textAlign: 'left',
   },
   contactText: {
     fontSize: 18,
-    color: '#000',
-    fontFamily: 'GowunBatang',  // 일반 글꼴은 GowunBatang으로 설정
-    marginBottom: 5, // 각 연락처 항목 간의 간격
+    color: '#777',
+    fontFamily: 'GowunBatang',
+    textAlign: 'right',
   },
-
   footer: {
     position: 'absolute',
     bottom: 30,
@@ -180,10 +229,6 @@ const styles = StyleSheet.create({
   },
   footerButton: {
     alignItems: 'center',
-    
-  },
-  cameraButton:{
-    alignItems: 'center',
   },
   footerIcon: {
     width: 100,
@@ -192,6 +237,6 @@ const styles = StyleSheet.create({
   footerText: {
     fontSize: 24,
     color: '#000',
-    fontFamily: 'GowunBatangBold',  // 여기서 -Bold 폰트를 적용합니다.
+    fontFamily: 'GowunBatangBold',
   },
 });
