@@ -5,7 +5,8 @@ import MainScreen from './MainScreen';
 import LoadingScreen from './LoadingScreen';
 import ViewVideoScreen from './ViewVideoScreen';
 import MyPageScreen from './MyPageScreen';
-import RecordingScreen from './RecordingScreen'; // 리콜딩 스크린 추가
+import RecordingScreen from './RecordingScreen';
+import FinalScreen from './FinalScreen'; // FinalScreen 추가
 
 const Stack = createNativeStackNavigator();
 
@@ -36,7 +37,12 @@ export default function App() {
         <Stack.Screen 
           name="Recording" 
           component={RecordingScreen}
-          options={{ title: '녹화 화면', headerShown: false }} // 리콜딩 스크린 추가
+          options={{ title: '녹화 화면', headerShown: false }} 
+        />
+        <Stack.Screen 
+          name="Final" 
+          component={FinalScreen}
+          options={{ title: '최종 화면', headerShown: false }} // FinalScreen 등록
         />
       </Stack.Navigator>
     </NavigationContainer>
