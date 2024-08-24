@@ -306,23 +306,22 @@ const sendAudio = async (uri, action = 'start') => {
         </View>
 
         <View style={styles.footer}>
-          <TouchableOpacity style={styles.footerButton} onPress={() => screenNavigation.goBack()}>
-            <Image source={require('./assets/goback.png')} style={styles.footerIcon} />
-            <Text style={styles.footerText}>뒤로가기</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.footerButton} onPress={handleRecordingPress}>
-            <Image source={require('./assets/retry.png')} style={styles.footerIcon} />
-            <Text style={styles.footerText}>녹화</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.footerButton} onPress={() => {
+            <TouchableOpacity style={styles.footerButton} onPress={() => navigation.navigate('Main')}>
+                <Image source={require('./assets/goback.png')} style={styles.footerIcon} />
+                <Text style={styles.footerText}>뒤로가기</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.footerButton} onPress={handleRecordingPress}>
+                <Image source={require('./assets/retry.png')} style={styles.footerIcon} />
+                <Text style={styles.footerText}>녹화</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.footerButton} onPress={() => {
             stopVideoRecording();
             navigation.navigate('Final'); // FinalScreen으로 이동
-        }}>
-  <Image source={require('./assets/save.png')} style={styles.footerIcon} />
-  <Text style={styles.footerText}>저장하기</Text>
-</TouchableOpacity>
-
-        </View>
+            }}>
+            <Image source={require('./assets/save.png')} style={styles.footerIcon} />
+            <Text style={styles.footerText}>저장하기</Text>
+        </TouchableOpacity>
+    </View>
       </View>
     </ImageBackground>
   );
