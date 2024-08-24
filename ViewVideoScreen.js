@@ -2,12 +2,15 @@ import React from 'react';
 import { StyleSheet, Text, View, ScrollView, TouchableOpacity, Image, Dimensions } from 'react-native';
 import { useFonts } from 'expo-font';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { useNavigation } from '@react-navigation/native';
 
 export default function DiaryScreen() {
   const [fontsLoaded] = useFonts({
     GowunBatangBold: require('./assets/fonts/GowunBatangBold.ttf'),
     GowunBatang: require('./assets/fonts/GowunBatang.ttf'),
   });
+
+  const navigation = useNavigation();
 
   if (!fontsLoaded) {
     return null;
@@ -56,15 +59,24 @@ export default function DiaryScreen() {
         )}
       </ScrollView>
       <View style={styles.footer}>
-        <TouchableOpacity style={styles.footerButton}>
+        <TouchableOpacity 
+          style={styles.footerButton}
+          onPress={() => navigation.navigate('ViewVideo')}
+        >
           <Image source={require('./assets/calendar.png')} style={styles.footerIcon} />
           <Text style={styles.footerText}>일기</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.footerButton}>
+        <TouchableOpacity 
+          style={styles.footerButton}
+          onPress={() => navigation.navigate('Main')}
+        >
           <Image source={require('./assets/home.png')} style={styles.footerIcon} />
           <Text style={styles.footerText}>처음으로</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.footerButton}>
+        <TouchableOpacity 
+          style={styles.footerButton}
+          onPress={() => navigation.navigate('MyPage')}
+        >
           <Image source={require('./assets/profile.png')} style={styles.footerIcon} />
           <Text style={styles.footerText}>내 정보</Text>
         </TouchableOpacity>
@@ -157,7 +169,7 @@ const styles = StyleSheet.create({
     width: '100%',
     backgroundColor: '#F8F8F8',
     paddingTop: 10,
-    paddingBottom: 30,
+    paddingBottom: 40,
     position: 'absolute',
     bottom: 0, // 화면 하단에 위치
   },

@@ -2,12 +2,15 @@ import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image, ImageBackground } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { useFonts } from 'expo-font';
+import { useNavigation } from '@react-navigation/native';
 
 export default function ProfileScreen() {
   const [fontsLoaded] = useFonts({
     GowunBatangBold: require('./assets/fonts/GowunBatangBold.ttf'), 
     GowunBatang: require('./assets/fonts/GowunBatang.ttf')
   });
+
+  const navigation = useNavigation();
 
   if (!fontsLoaded) {
     return null;
@@ -87,15 +90,24 @@ export default function ProfileScreen() {
 
         {/* Footer 부분 */}
         <View style={styles.footer}>
-          <TouchableOpacity style={styles.footerButton}>
+          <TouchableOpacity 
+            style={styles.footerButton}
+            onPress={() => navigation.navigate('ViewVideo')}
+          >
             <Image source={require('./assets/calendar.png')} style={styles.footerIcon} />
-            <Text style={styles.footerText}>예전 일기</Text>
+            <Text style={styles.footerText}>일기</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.footerButton}>
+          <TouchableOpacity 
+            style={styles.footerButton}
+            onPress={() => navigation.navigate('Main')}
+          >
             <Image source={require('./assets/home.png')} style={styles.footerIcon} />
             <Text style={styles.footerText}>처음으로</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.footerButton}>
+          <TouchableOpacity 
+            style={styles.footerButton}
+            onPress={() => navigation.navigate('MyPage')}
+          >
             <Image source={require('./assets/profile.png')} style={styles.footerIcon} />
             <Text style={styles.footerText}>내 정보</Text>
           </TouchableOpacity>
@@ -141,8 +153,8 @@ const styles = StyleSheet.create({
   },
 
   profileIcon: {
-    width: 80,
-    height: 80,
+    width: 90,
+    height: 90,
     marginBottom: 10,
   },
   nameText: {
@@ -232,7 +244,7 @@ const styles = StyleSheet.create({
   },
   footerIcon: {
     width: 100,
-    height:100,
+    height: 100,
   },
   footerText: {
     fontSize: 24,
