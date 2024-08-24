@@ -23,13 +23,13 @@ export default function FinalScreen() {
       </ScrollView>
 
       <View style={styles.footer}>
-        <TouchableOpacity style={styles.footerButton} onPress={() => navigation.navigate('Main')}>
-          <Image source={require('./assets/home.png')} style={styles.footerIcon} />
-          <Text style={styles.footerText}>처음으로</Text>
-        </TouchableOpacity>
         <TouchableOpacity style={styles.footerButton} onPress={() => navigation.navigate('ViewVideo')}>
           <Image source={require('./assets/calendar.png')} style={styles.footerIcon} />
           <Text style={styles.footerText}>일기 보기</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.footerButton} onPress={() => navigation.navigate('Main')}>
+          <Image source={require('./assets/home.png')} style={styles.footerIcon} />
+          <Text style={styles.footerText}>처음으로</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.footerButton} onPress={() => navigation.navigate('MyPage')}>
           <Image source={require('./assets/profile.png')} style={styles.footerIcon} />
